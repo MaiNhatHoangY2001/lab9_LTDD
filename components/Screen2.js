@@ -21,38 +21,40 @@ export default function Screen2() {
 	const rat2 = useRef(new Animated.ValueXY({ x: randomXY().x, y: randomXY().y })).current;
 	const rat3 = useRef(new Animated.ValueXY({ x: randomXY().x, y: randomXY().y })).current;
 
+	const onPressScreen = () => {
+		Animated.sequence([
+			Animated.timing(rat1, {
+				toValue: {
+					x: randomXY().x,
+					y: randomXY().y,
+				},
+				duration: 500,
+				useNativeDriver: false,
+			}),
+			Animated.timing(rat2, {
+				toValue: {
+					x: randomXY().x,
+					y: randomXY().y,
+				},
+				duration: 500,
+				useNativeDriver: false,
+			}),
+			Animated.timing(rat3, {
+				toValue: {
+					x: randomXY().x,
+					y: randomXY().y,
+				},
+				duration: 500,
+				useNativeDriver: false,
+			}),
+		]).start();
+	};
+
 	return (
 		<View
 			onStartShouldSetResponder={() => true}
 			onMoveShouldSetResponder={() => true}
-			onResponderMove={(event) => {
-				Animated.sequence([
-					Animated.timing(rat1, {
-						toValue: {
-							x: randomXY().x,
-							y: randomXY().y,
-						},
-						duration: 1000,
-						useNativeDriver: false,
-					}),
-					Animated.timing(rat2, {
-						toValue: {
-							x: randomXY().x,
-							y: randomXY().y,
-						},
-						duration: 1000,
-						useNativeDriver: false,
-					}),
-					Animated.timing(rat3, {
-						toValue: {
-							x: randomXY().x,
-							y: randomXY().y,
-						},
-						duration: 1000,
-						useNativeDriver: false,
-					}),
-				]).start();
-			}}
+			onResponderMove={onPressScreen}
 			// onResponderRelease={() => {
 			// 	Animated.spring(touch, {
 			// 		toValue: {
